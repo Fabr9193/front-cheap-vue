@@ -1,7 +1,5 @@
 <template>
   <div class="hello">
-  
-    <h1>{{ msg }}</h1>
     <div class="layout">
       <div class="form">
         <form @submit.prevent="getValues">
@@ -39,9 +37,6 @@
 <script>
 export default {
   name: 'FormSection',
-  props: {
-    msg: String
-  },
   methods:{
     getValues(submitEvent){
       console.log(submitEvent.target.elements.date_end.value)

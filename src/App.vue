@@ -1,19 +1,19 @@
 <template>
   <div id="app">
-    <FormSection msg="This a cheap-flight front test"/>
-    <SearchSection :results=jsonlist />
+      <div id="menu">
+          <menu-component/>
+      </div>
+      <router-view/>
   </div>
 </template>
 
 <script>
-import FormSection from './components/FormSection.vue'
-import SearchSection from './components/SearchSection.vue'
+import menuComponent from '@/components/global/menuComponent.vue'
 
 export default {
   name: 'App',
   components: {
-    FormSection,
-    SearchSection
+    menuComponent
   },
   data: function( ) {
     return {
@@ -239,6 +239,5 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
 }
 </style>
