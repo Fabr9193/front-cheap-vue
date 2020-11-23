@@ -21,7 +21,6 @@
           <div>Price</div>
           <input name="price" type="text" placeholder="Price">
         </div>
-
         <div class="submit">
           <input type="submit" value="Find it !">
         </div>
@@ -35,13 +34,22 @@
 </template>
 
 <script>
+ import Cookie from 'js-cookie'
 export default {
   name: 'FormSection',
   methods:{
     getValues(submitEvent){
       console.log(submitEvent.target.elements.date_end.value)
+    },
+    submitValues(){
+
     }
-  }
+  },
+ data: function () {
+    return {
+      csrf : Cookie.get('csrftoken')
+    }
+    }
 }
 </script>
 
@@ -81,6 +89,9 @@ export default {
 }
 .submit {
   margin-top:25px
+}
+.hidden {
+  display: none;
 }
  @media screen and (min-width:991px) {
    .background-image{
