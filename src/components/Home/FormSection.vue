@@ -1,52 +1,64 @@
 <template>
-  <div class="hello">
-    <div class="layout">
-      <div class="form">
-        <form @submit.prevent="getValues">
-        <div class="departure">
-          <div>Departure</div>
-          <input name="departure" type="text" placeholder="Departure">
-        </div>
-        <div class="dates">
-          <div class="date-start">
-            <div>Departure Date</div>
-            <input name="date_start" type="date" placeholder="Departure date">
-          </div>
-          <div class="date-end">
-            <div>Return Date</div>
-            <input name="date_end" type="date" placeholder="Return date">
-          </div>
-        </div>
-        <div class="price">
-          <div>Price</div>
-          <input name="price" type="text" placeholder="Price">
-        </div>
-        <div class="submit">
-          <input type="submit" value="Find it !">
-        </div>
-        </form>
-      </div>
-    </div>
-  </div>
+    <b-container class="h-100">
+        <b-row class="h-100">
+            <b-col lg="7">
+                <p>test</p>
+            </b-col>
+            <b-col lg="5">
+                <div class="hello h-100">
+                    <div class="layout h-100 align-items-center">
+                        <b-card class="h-75">
+                            <div class="form">
+                                <form @submit.prevent="getValues">
+                                    <div class="departure">
+                                        <div>Departure</div>
+                                        <input v-model="form.departure" name="departure" type="text" placeholder="Departure">
+                                    </div>
+                                    <div class="dates">
+                                        <div class="date-start">
+                                            <div>Departure Date</div>
+                                            <input v-model="form.date_start" name="date_start" type="date" placeholder="Departure date">
+                                        </div>
+                                        <div class="date-end">
+                                            <div>Return Date</div>
+                                            <input v-model="form.date_end" name="date_end" type="date" placeholder="Return date">
+                                        </div>
+                                    </div>
+                                    <div class="price">
+                                        <div>Price</div>
+                                        <input v-model="form.price" name="price" type="text" placeholder="Price">
+                                    </div>
+                                    <div class="submit">
+                                        <input type="submit" value="Find it !">
+                                    </div>
+                                </form>
+                            </div>
+                        </b-card>
+                    </div>
+                </div>
+            </b-col>
+        </b-row>
+    </b-container>
 </template>
 
 <script>
  import Cookie from 'js-cookie'
 export default {
   name: 'FormSection',
-  methods:{
-    getValues(submitEvent){
-      console.log(submitEvent.target.elements.date_end.value)
+  data: () => ({
+    form: {
+      departure: '',
+      date_start: '',
+      date_end: '',
+      price: ''
     },
-    submitValues(){
-
+    csrf : Cookie.get('csrftoken')
+  }),
+  methods:{
+    getValues(){
+        return this.$store.dispatch('getFlightInfo', this.form)
     }
   },
- data: function () {
-    return {
-      csrf : Cookie.get('csrftoken')
-    }
-    }
 }
 </script>
 
@@ -57,14 +69,12 @@ export default {
   flex-direction: column;
   align-content: center;
   width: 100%;
-  
 }
 .layout{
   display:block;
 }
 .form {
   display: flex;
-  background-color:greenyellow;
   justify-content: center;
 }
 .background-image{
@@ -99,7 +109,7 @@ export default {
      display: flex;
    }
    .form {
-     width: 60%;
+     width: 100%;
    }
    
   }

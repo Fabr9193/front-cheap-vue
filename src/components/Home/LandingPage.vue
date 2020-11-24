@@ -1,7 +1,7 @@
 <template>
     <div id="landingPage">
         <div class="overlay"></div>
-        <div class="bg-Landing">
+        <div class="bg-Landing h-100">
             <FormSection/>
         </div>
     </div>
