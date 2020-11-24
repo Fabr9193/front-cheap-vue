@@ -2,7 +2,10 @@
     <div id="headerMenu">
         <b-container class="bv-example-row">
             <b-row>
-                <img src="@/assets/logo.png" width="150" height="150" alt="">
+                <img src="@/assets/logo.png" width="125" height="125" alt="">
+                <span>
+                    CheapTrip
+                </span>
                 <b-col class="d-flex align-items-md-center justify-content-flex-end">
                     <b-nav>
                         <b-nav-item active>Active</b-nav-item>
@@ -21,3 +24,18 @@ export default {
   name: 'menuComponent'
 }
 </script>
+
+<style lang="scss">
+    #headerMenu {
+        span {
+            display: flex;
+            align-items: center;
+            font-size: 28px;
+        }
+    }
+    .nav {
+        width: 100%;
+        display: flex;
+        flex-direction: row-reverse;
+    }
+</style>

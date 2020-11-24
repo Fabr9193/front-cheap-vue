@@ -1,19 +1,19 @@
 <template>
     <div id="home">
-        <FormSection/>
+        <LandingPage />
         <SearchSection :results=jsonlist />
     </div>
 </template>
 
 <script>
-import FormSection from '@/components/Home/FormSection.vue'
 import SearchSection from '@/components/Home/SearchSection.vue'
+import LandingPage from '@/components/Home/LandingPage.vue'
 
 export default {
   name: 'home',
   components : {
-    FormSection,
-    SearchSection
+    SearchSection,
+    LandingPage
   }
 }
 </script>

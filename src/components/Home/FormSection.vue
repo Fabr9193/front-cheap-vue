@@ -25,9 +25,6 @@
           <input type="submit" value="Find it !">
         </div>
         </form>
-      </div>  
-      <div class="background-image">
-        <p style="color:white; font-weight:800">BIENVENUE CHEZ AIR FRONSE <br><br><br>ICI LA VIE C EST TROP BIEN</p>
       </div>
     </div>
   </div>
