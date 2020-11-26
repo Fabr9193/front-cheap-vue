@@ -12,16 +12,16 @@
                                 <form @submit.prevent="getValues">
                                     <div class="departure">
                                         <div>Departure</div>
-                                        <input v-model="form.departure" name="departure" type="text" placeholder="Departure">
+                                        <input v-model="form.fly_from" name="fly_from" type="text" placeholder="Departure">
                                     </div>
                                     <div class="dates">
                                         <div class="date-start">
                                             <div>Departure Date</div>
-                                            <input v-model="form.date_start" name="date_start" type="date" placeholder="Departure date">
+                                            <input v-model="form.date_start" name="dateFrom" type="date" placeholder="Departure date">
                                         </div>
                                         <div class="date-end">
                                             <div>Return Date</div>
-                                            <input v-model="form.date_end" name="date_end" type="date" placeholder="Return date">
+                                            <input v-model="form.date_end" name="dateTo" type="date" placeholder="Return date">
                                         </div>
                                     </div>
                                     <div class="price">
@@ -42,21 +42,32 @@
 </template>
 
 <script>
- import Cookie from 'js-cookie'
+import axios from 'axios'
+import Cookie from 'js-cookie'
+import moment from 'moment'
 export default {
   name: 'FormSection',
   data: () => ({
     form: {
-      departure: '',
+      fly_from: '',
       date_start: '',
       date_end: '',
+      dateFrom:'',
+      dateTo:'',
       price: ''
     },
     csrf : Cookie.get('csrftoken')
   }),
   methods:{
     getValues(){
-        return this.$store.dispatch('getFlightInfo', this.form)
+      this.form.dateFrom = moment(this.form.date_start).format('DD/MM/YYYY')
+      this.form.dateTo = moment(this.form.date_end).format('DD/MM/YYYY')
+      let searchParams = new URLSearchParams(this.form)
+      console.log(searchParams.toString())
+       axios.get('http://localhost:8000/flights?' + searchParams.toString()).then( (res) => {
+         // resultats finaux
+         console.log(res.data.data)
+       })
     }
   },
 }
