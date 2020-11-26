@@ -26,7 +26,7 @@
                                     </div>
                                     <div class="price">
                                         <div>Price</div>
-                                        <input v-model="form.price" name="price" type="text" placeholder="Price">
+                                        <input v-model="form.price_to" name="price" type="text" placeholder="Price">
                                     </div>
                                     <div class="submit">
                                         <input type="submit" value="Find it !">
@@ -38,6 +38,9 @@
                 </div>
             </b-col>
         </b-row>
+        <div v-show="results != null">
+          <SearchSection :results="results"> </SearchSection>
+        </div>
     </b-container>
 </template>
 
@@ -45,7 +48,11 @@
 import axios from 'axios'
 import Cookie from 'js-cookie'
 import moment from 'moment'
+import SearchSection from './SearchSection'
 export default {
+  components : {
+    SearchSection
+  },
   name: 'FormSection',
   data: () => ({
     form: {
@@ -54,19 +61,21 @@ export default {
       date_end: '',
       dateFrom:'',
       dateTo:'',
-      price: ''
+      price_to: ''
     },
-    csrf : Cookie.get('csrftoken')
+    csrf : Cookie.get('csrftoken'),
+    results : null
   }),
   methods:{
     getValues(){
       this.form.dateFrom = moment(this.form.date_start).format('DD/MM/YYYY')
       this.form.dateTo = moment(this.form.date_end).format('DD/MM/YYYY')
       let searchParams = new URLSearchParams(this.form)
+      this.results = null
       console.log(searchParams.toString())
        axios.get('http://localhost:8000/flights?' + searchParams.toString()).then( (res) => {
          // resultats finaux
-         console.log(res.data.data)
+         this.results = res.data.data
        })
     }
   },
