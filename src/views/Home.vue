@@ -1,7 +1,7 @@
 <template>
     <div id="home">
         <LandingPage />
-        <SearchSection :results=jsonlist />
+        <SearchSection  />
     </div>
 </template>
 
