@@ -2,7 +2,6 @@
     <b-container class="h-100">
         <b-row class="h-100">
             <b-col lg="7">
-                <p>test</p>
             </b-col>
             <b-col lg="5">
                 <div class="hello h-100">
@@ -25,7 +24,9 @@
                                         </div>
                                     </div>
                                     <div class="price">
-                                        <div>Price</div>
+                                        <div>Price min </div>
+                                        <input v-model="form.price_from" name="price" type="text" placeholder="Price">
+                                        <div>Price max</div>
                                         <input v-model="form.price_to" name="price" type="text" placeholder="Price">
                                     </div>
                                     <div class="submit">
@@ -61,6 +62,7 @@ export default {
       date_end: '',
       dateFrom:'',
       dateTo:'',
+      price_from:'',
       price_to: ''
     },
     csrf : Cookie.get('csrftoken'),

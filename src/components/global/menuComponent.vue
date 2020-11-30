@@ -9,7 +9,10 @@
                 <b-col class="d-flex align-items-md-center justify-content-flex-end">
                     <b-nav>
                         <b-nav-item active>Active</b-nav-item>
-                        <b-nav-item>Link</b-nav-item>
+                        <b-nav-item v-b-modal.modal-login>Login</b-nav-item>
+                        <b-modal id="modal-login">
+                                <p>Hello from modal</p>
+                        </b-modal>
                         <b-nav-item>Another Link</b-nav-item>
                         <b-nav-item disabled>Disabled</b-nav-item>
                     </b-nav>
