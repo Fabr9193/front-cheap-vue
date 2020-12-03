@@ -14,6 +14,10 @@
                                         <div>Departure</div>
                                         <input v-model="form.fly_from" name="fly_from" type="text" placeholder="Departure">
                                     </div>
+                                    <div class="arrival">
+                                        <div>Arrival</div>
+                                        <input v-model="form.fly_to" name="fly_to" type="text" placeholder="Arrival">
+                                    </div>
                                     <div class="dates">
                                         <div class="date-start">
                                             <div>Departure Date</div>
@@ -41,13 +45,15 @@
         <div v-show="results != null">
           <SearchSection :results="results"> </SearchSection>
         </div>
+            <div>
+                {{ flightInfo }}
+            </div>
     </b-container>
 </template>
 
 <script>
-import axios from 'axios'
+import { mapState } from 'vuex'
 import Cookie from 'js-cookie'
-import moment from 'moment'
 import SearchSection from './SearchSection'
 export default {
   components : {
@@ -57,6 +63,7 @@ export default {
   data: () => ({
     form: {
       fly_from: '',
+      fly_to: '',
       date_start: '',
       date_end: '',
       dateFrom:'',
@@ -67,18 +74,15 @@ export default {
     results : null
   }),
   methods:{
-    getValues(){
-      this.form.dateFrom = moment(this.form.date_start).format('DD/MM/YYYY')
-      this.form.dateTo = moment(this.form.date_end).format('DD/MM/YYYY')
-      let searchParams = new URLSearchParams(this.form)
-      this.results = null
-      console.log(searchParams.toString())
-       axios.get('http://localhost:8000/flights?' + searchParams.toString()).then( (res) => {
-         // resultats finaux
-         this.results = res.data.data
-       })
+    getValues() {
+      return this.$store.dispatch('getFlightInfo', this.form)
     }
   },
+  computed: {
+    ...mapState({
+      flightInfo: state => state.flight.flightObj
+    })
+  }
 }
 </script>
 

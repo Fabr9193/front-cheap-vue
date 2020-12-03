@@ -2,6 +2,7 @@
  * Created by Orlands on 17/11/2020.
  */
 
+import flight from './flight'
 import Vue from 'vue'
 import Vuex from 'vuex'
 
@@ -15,5 +16,6 @@ export default new Vuex.Store({
   actions: {
   },
   modules: {
+    flight
   }
 })
