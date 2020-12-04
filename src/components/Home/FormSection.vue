@@ -42,17 +42,11 @@
                 </div>
             </b-col>
         </b-row>
-        <div v-show="results != null">
           <SearchSection :results="results"> </SearchSection>
-        </div>
-            <div>
-                {{ flightInfo }}
-            </div>
     </b-container>
 </template>
 
 <script>
-import { mapState } from 'vuex'
 import Cookie from 'js-cookie'
 import SearchSection from './SearchSection'
 export default {
@@ -77,11 +71,6 @@ export default {
     getValues() {
       return this.$store.dispatch('getFlightInfo', this.form)
     }
-  },
-  computed: {
-    ...mapState({
-      flightInfo: state => state.flight.flightObj
-    })
   }
 }
 </script>

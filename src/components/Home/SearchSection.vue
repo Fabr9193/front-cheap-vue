@@ -1,33 +1,25 @@
 <template>
 <div class="res">
-  <div class="results" v-for="(obj) in results" v-bind:key="obj.id">
-    
-    <div class="price">
-         {{ obj.price }}
-    </div>
-    <div class="city-from">
-         {{ obj.cityFrom }}
-    </div>    
-
-    <div class="citoy-to">
-         {{ obj.cityTo }}
-    </div>
-  </div>
+    <span>{{ flightInfo }}</span>
 </div>
 </template>
 
 
 
 <script>
+import { mapState } from 'vuex'
+
 export default {
   name: 'SearchSection',
-  props: {
-    results: Array
-  },
   methods:{
     getValues(submitEvent){
       console.log(submitEvent.target.elements.date_end.value)
     }
+  },
+  computed: {
+    ...mapState({
+      flightInfo: state => state.flight.flightObj
+    })
   }
 }
 </script>
