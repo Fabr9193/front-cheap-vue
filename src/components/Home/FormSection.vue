@@ -64,7 +64,8 @@ export default {
   }),
   methods:{
     getValues() {
-      return this.$store.dispatch('getFlightInfo', this.form)
+      this.$store.dispatch('getFlightInfo', this.form)
+      this.$store.dispatch('loadedData', true)
     }
   }
 }

@@ -7,18 +7,23 @@ import moment from 'moment'
 const flight = {
   state: () => ({
     flightObj: [],
+    loaded: false,
+    flightResult: []
   }),
   mutations: {
     storeFlightInfo(state, flightInfo) {
       console.log(flightInfo)
       for (var i = 0; i < flightInfo.data.data.length; i++) {
-        console.log(flightInfo.data.data[i].cityTo)
         state.flightObj[i] = {}
         state.flightObj[i].cityFrom = flightInfo.data.data[i].cityFrom
         state.flightObj[i].cityTo = flightInfo.data.data[i].cityTo
         state.flightObj[i].price = flightInfo.data.data[i].price
+        state.flightResult = state.flightObj
       }
-      console.log(state.flightObj)
+    },
+    loadedData(state) {
+      state.loaded = true
+      console.log(state.loaded)
     }
   },
   actions: {
@@ -31,6 +36,9 @@ const flight = {
       .then( (res) => {
         commit('storeFlightInfo', res)
       })
+    },
+    loadedData ({commit}) {
+      commit("loadedData", true);
     }
   },
   getters: {

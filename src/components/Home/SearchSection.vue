@@ -1,6 +1,6 @@
 <template>
-<div v-show="flightInfo != null" class="res">
-    <span>{{ flightInfo }}</span>
+<div v-if="flightInfo && loaded == true" class="res">
+    <b-table striped hover :items="flightInfo"></b-table>
 </div>
 </template>
 
@@ -18,7 +18,8 @@ export default {
   },
   computed: {
     ...mapState({
-      flightInfo: state => state.flight.flightObj
+      flightInfo: state => state.flight.flightResult,
+      loaded: state => state.flight.loaded
     })
   }
 }
