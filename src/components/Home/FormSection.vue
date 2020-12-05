@@ -13,11 +13,7 @@
                                     <div class="departure">
                                         <div>Departure</div>
                                         <input v-model="form.fly_from" name="fly_from" type="text" placeholder="Departure">
-                                    </div>
-                                    <div class="arrival">
-                                        <div>Arrival</div>
-                                        <input v-model="form.fly_to" name="fly_to" type="text" placeholder="Arrival">
-                                    </div>
+                                    </div>                      
                                     <div class="dates">
                                         <div class="date-start">
                                             <div>Departure Date</div>
@@ -57,7 +53,6 @@ export default {
   data: () => ({
     form: {
       fly_from: '',
-      fly_to: '',
       date_start: '',
       date_end: '',
       dateFrom:'',

@@ -1,5 +1,5 @@
 <template>
-<div class="res">
+<div v-show="flightInfo != null" class="res">
     <span>{{ flightInfo }}</span>
 </div>
 </template>

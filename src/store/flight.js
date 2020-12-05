@@ -12,10 +12,11 @@ const flight = {
     storeFlightInfo(state, flightInfo) {
       console.log(flightInfo)
       for (var i = 0; i < flightInfo.data.data.length; i++) {
-        state.flightObj[i] = []
-        state.flightObj[i]["cityFrom"] = flightInfo.data.data[i].cityFrom
-        state.flightObj[i]["cityTo"] = flightInfo.data.data[i].cityTo
-        state.flightObj[i]["Price"] = flightInfo.data.data[i].price
+        console.log(flightInfo.data.data[i].cityTo)
+        state.flightObj[i] = {}
+        state.flightObj[i].cityFrom = flightInfo.data.data[i].cityFrom
+        state.flightObj[i].cityTo = flightInfo.data.data[i].cityTo
+        state.flightObj[i].price = flightInfo.data.data[i].price
       }
       console.log(state.flightObj)
     }
@@ -33,7 +34,7 @@ const flight = {
     }
   },
   getters: {
-
+   
   }
 }
 
